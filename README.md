@@ -21,6 +21,8 @@ So for now you will need to clone the project and do a `mvn install`.
 
 The rootDirectory is the location that contains your autolint.js config file.
 
+You also need to have `autolint` available on path.
+
 ## Running the plugin
 
     mvn autolint:verify
