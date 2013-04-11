@@ -16,10 +16,12 @@ So for now you will need to clone the project and do a `mvn install`.
        <version>1.0.0-SNAPSHOT</version>
        <configuration>
          <rootDirectory>${basedir}/src/test/javascript/</rootDirectory>
+         <skip>false</skip>
        </configuration>
      </plugin>
 
-The rootDirectory is the location that contains your autolint.js config file.
+- `rootDirectory` is the location that contains your autolint.js config file.
+- `skip` can be set to true if linting should be skipped in certain environments.
 
 You also need to have `autolint` available on path.
 

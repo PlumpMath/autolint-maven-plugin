@@ -14,7 +14,7 @@ import org.apache.maven.plugin.logging.Log;
  * Goal which runs autolint.js
  *
  * @goal verify
- * 
+ *
  * @phase verify
  */
 public class AutolintMavenPlugin
@@ -26,8 +26,19 @@ public class AutolintMavenPlugin
      */
     private File rootDirectory;
 
+    /**
+     * Whether the test should be skipped
+     * @parameter
+     */
+    private boolean skip;
+
     public void execute() throws MojoExecutionException, MojoFailureException {
         Log log = getLog();
+
+        if (skip) {
+            log.info("Skipping Autolint.js");
+            return;
+        }
 
         log.info("");
         log.info("------------------------------------------------------------------------");
