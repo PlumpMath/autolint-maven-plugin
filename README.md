@@ -28,6 +28,8 @@ So for now you will need to clone the project and do a `mvn install`.
   if you don't want to globally install autolint on a build server, but would rather bundle
   it with the project.
 
+Autolint also requires [node](http://nodejs.org/) to be available on the path.
+
 ## Running the plugin
 
     mvn autolint:verify
