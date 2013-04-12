@@ -21,9 +21,12 @@ So for now you will need to clone the project and do a `mvn install`.
      </plugin>
 
 - `rootDirectory` is the location that contains your autolint.js config file.
+
 - `skip` can be set to true if linting should be skipped in certain environments.
 
-You also need to have `autolint` available on path.
+- `command` is the command to run. Defaults to `autolint` on the path. This is useful
+  if you don't want to globally install autolint on a build server, but would rather bundle
+  it with the project.
 
 ## Running the plugin
 

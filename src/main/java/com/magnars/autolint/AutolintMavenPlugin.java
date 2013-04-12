@@ -27,6 +27,12 @@ public class AutolintMavenPlugin
     private File rootDirectory;
 
     /**
+     * The command to run autolint. Defaults to just "autolint" (on the path).
+     * @parameter
+     */
+    private String command;
+
+    /**
      * Whether the test should be skipped
      * @parameter
      */
@@ -46,7 +52,11 @@ public class AutolintMavenPlugin
         log.info("------------------------------------------------------------------------");
         log.info("Using path " + rootDirectory.toString());
 
-        ProcessBuilder pb = new ProcessBuilder("autolint", "--once");
+        if (command == null) {
+            command = "autolint";
+        }
+
+        ProcessBuilder pb = new ProcessBuilder(command, "--once");
         pb.directory(rootDirectory);
         pb.redirectErrorStream(true);
 
@@ -65,7 +75,9 @@ public class AutolintMavenPlugin
             if (exitCode != 0) {
                 throw new MojoFailureException("Linting of JavaScript code FAILED");
             }
-        } catch (InterruptedException | IOException e) {
+        } catch (InterruptedException e) {
+            throw new MojoExecutionException(e.getMessage());
+        } catch (IOException e) {
             throw new MojoExecutionException(e.getMessage());
         } finally {
             if (process != null) {
